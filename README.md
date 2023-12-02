@@ -5,8 +5,6 @@
 - DEX - Proposed DEX-enabled B+-Tree
 - Benchmark framework
 
-Fully open-sourced under MIT license.
-
 ## Building
 
 ### Dependencies
