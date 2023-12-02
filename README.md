@@ -30,4 +30,4 @@ cp ../script/restartMemc.sh .
 
 1. configure ../memcached.conf, where the 1st line is memcached IP, the 2nd is memcached port
 2. For each run, first run `./restartMemc.sh` to initialize the memcached server
-3. In each server, execute `sudo ./newbench/`
+3. In each server, execute `sudo ./newbench`
