@@ -2,7 +2,7 @@
 
 ## What's included
 
-- DEX - Proposed DEX-enabled B+-Tree
+- DEX - Proposed distributed B+-Tree on disaggregated memory
 - Benchmark framework
 
 ## Building
@@ -30,4 +30,5 @@ cp ../script/run_other.sh .
 
 ## Running benchmark
 1. configure ../memcached.conf, where the 1st line is memcached IP, the 2nd is memcached port
-2. In one server, execute `sudo ./newbench/`
+2. For each run, first run `./restartMemc.sh` to initialize the memcached server
+3. In each server, execute `sudo ./newbench/`
