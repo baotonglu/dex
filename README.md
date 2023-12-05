@@ -29,6 +29,5 @@ cp ../script/run*.sh .
 
 ## Running benchmark
 1. configure ./memcached.conf, where the 1st line is memcached IP, the 2nd is memcached port
-2. For each run, first run `./restartMemc.sh` to initialize the memcached server
-3. In one server, execute `sudo ./run.sh`
-4. In remaining servers, execute `sudo ./run_other.sh`
+2. In one server, execute `sudo ./run.sh`
+3. In remaining servers, execute `sudo ./run_other.sh`
