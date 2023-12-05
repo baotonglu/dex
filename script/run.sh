@@ -18,9 +18,9 @@ mem_threads=(0 4)
 cache=(0 64 128 256 512 1024)
 uniform=(0 1)
 zipf=(0.99)
-bulk=200
+bulk=50
 warmup=10
-runnum=200
+runnum=50
 nodenum=2
 
 #other
