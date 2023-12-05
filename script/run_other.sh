@@ -1,69 +1,49 @@
 #!/bin/bash
 
 #ops
-read=(100 0)
-insert=(0 0)
-update=(0 100)
-delete=(0 0)
-range=(0 0)
+read=(100 50 95 0 0)
+insert=(0 0 0 100 5)
+update=(0 50 5 0 0)
+delete=(0 0 0 0 0)
+range=(0 0 0 0 95)
 
 #fixed-op
 readonly=(100 0 0 0 0)
 updateonly=(0 0 100 0 0)
 
 #exp
-threads=(0 1 32 64 96 128)
-mem_threads=(0 1 2 4)
-cache=(0 64 128 256 512)
-zipf=(0 0.5 0.7 0.9 0.99)
+threads=(0 2 18 36 72 108 144)
+#threads=(0 2 16 32 64 96 128)
+mem_threads=(0 4)
+cache=(0 64 128 256 512 1024)
+uniform=(0 1)
+zipf=(0.99)
 bulk=200
 warmup=10
-op=200
+runnum=200
+nodenum=2
 
 #other
 correct=0
 timebase=1
-index=(0 1)
-rpc=0
-admit=1
+early=1
+#index=(0 1 2)
+rpc=1
+admit=0.1
+tune=0
 
-# for t in {1..5}
-# do
-#     for c in 2 4
-#     do
-# 		for z in 1 4
-# 		do
-#             for i in 0 1
-#             do
-#                 filename="read-cache$c-zipf$z-index$i.txt"
-#                 echo $filename
-#                 sudo ./newbench 4 ${readonly[0]} ${readonly[1]} ${readonly[2]} ${readonly[3]} ${readonly[4]} ${threads[$t]} ${mem_threads[1]} ${cache[$c]} ${zipf[$z]} $bulk $warmup $op $correct $timebase $i $rpc $admit 
-#                 #>> $filename 
-#                 echo "start"
-# 				sleep 10
-# 				echo "end"
-#             done
-# 		done
-# 	done
-# done
 
-for t in {1..5}
-do
-    for c in 2 4
-    do
-		for z in 1 4
-		do
-            for i in 0 1
+for uni in 0
+do 
+    for op in 0
+    do 
+        for idx in 0
+        do  
+            for t in 1
             do
-                filename="update-cache$c-zipf$z-index$i.txt"
-                echo $filename
-                sudo ./newbench 4 ${updateonly[0]} ${updateonly[1]} ${updateonly[2]} ${updateonly[3]} ${updateonly[4]} ${threads[$t]} ${mem_threads[1]} ${cache[$c]} ${zipf[$z]} $bulk $warmup $op $correct $timebase $i $rpc $admit 
-                #>> $filename 
-                echo "start"
-				sleep 10
-				echo "end"
+                sudo ./newbench $nodenum ${read[$op]} ${insert[$op]} ${update[$op]} ${delete[$op]} ${range[$op]} ${threads[$t]} ${mem_threads[1]} ${cache[3]} $uni ${zipf[0]} $bulk $warmup $runnum $correct $timebase $early $idx $rpc $admit $tune 36
+                sleep 10
             done
-		done
-	done
+        done
+    done
 done
-
