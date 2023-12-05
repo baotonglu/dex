@@ -2,7 +2,7 @@
 
 ## What's included
 
-- DEX - Proposed DEX-enabled B+-Tree
+- DEX - Proposed distributed B+-Tree on disaggregated memory
 - Benchmark framework
 
 ## Building
